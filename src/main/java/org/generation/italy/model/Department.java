@@ -1,11 +1,17 @@
 package org.generation.italy.model;
 
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 
@@ -31,11 +37,32 @@ public class Department {
 	@Column(name="head_of_department")
 	private String headOfDepartment;
 	
+	@OneToMany
+	@JoinColumn(name="department_id")
+	@OrderBy("name")
+	private List<Degree> degree;
+	
 	//getters and setters
+	
+	
 
 	public Integer getId() {
 		return id;
 	}
+
+
+
+	public List<Degree> getDegree() {
+		return degree;
+	}
+
+
+
+	public void setDegree(List<Degree> degree) {
+		this.degree = degree;
+	}
+
+
 
 	public void setId(Integer id) {
 		this.id = id;
@@ -92,3 +119,4 @@ public class Department {
 	
 
 }
+
